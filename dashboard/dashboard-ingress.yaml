@@ -19,7 +19,7 @@ metadata:
     k8s-app: kubernetes-dashboard
 spec:
   rules:
-  - host: dashboard.dev-cluster.amcon.cloud
+  - host: dashboard.cluster.intern.amcon.de
     http:
       paths:
       - path: "/"
@@ -31,5 +31,5 @@ spec:
               number: 443           
   tls:
   - hosts:
-    - dashboard.dev-cluster.amcon.cloud
-    secretName: dashboard.dev-cluster.amcon.cloud-tls
+    - dashboard.cluster.intern.amcon.de
+    secretName: dashboard.cluster.intern.amcon.de-tls
