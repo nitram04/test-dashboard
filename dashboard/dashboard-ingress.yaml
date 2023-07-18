@@ -31,5 +31,5 @@ spec:
               number: 443           
   tls:
   - hosts:
-    - dashboard.cluster.intern.amcon.de
-    secretName: dashboard.cluster.intern.amcon.de-tls
+    - dashboard.cluster.intern.amcon.cloud
+    secretName: dashboard.cluster.intern.amcon.cloud-tls
