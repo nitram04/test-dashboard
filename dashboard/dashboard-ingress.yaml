@@ -19,7 +19,7 @@ metadata:
     k8s-app: kubernetes-dashboard
 spec:
   rules:
-  - host: dashboard.cluster.intern.amcon.de
+  - host: dashboard.cluster.intern.amcon.cloud
     http:
       paths:
       - path: "/"
