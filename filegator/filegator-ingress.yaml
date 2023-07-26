@@ -10,7 +10,7 @@ metadata:
     k8s-app: filegator
 spec:
   rules:
-  - host: filegator.dev-cluster.amcon.cloud
+  - host: filegator.cluster.intern.amcon.de
     http:
       paths:
       - path: "/"
@@ -22,5 +22,5 @@ spec:
               number: 8080
   tls:
   - hosts:
-    - filegator.dev-cluster.amcon.cloud
-    secretName: filegator.dev-cluster.amcon.cloud-tls
+    - filegator.cluster.intern.amcon.de
+    secretName: filegator.cluster.intern.amcon.de-tls
