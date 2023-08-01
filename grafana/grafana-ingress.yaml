@@ -5,8 +5,6 @@ metadata:
   namespace: grafana
   annotations:
     cert-manager.io/cluster-issuer: letsencrypt-nginx
-    nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
-    nginx.ingress.kubernetes.io/secure-backends: "true"
     kubernetes.io/ingress.class: "nginx"
     nginx.ingress.kubernetes.io/auth-url: "https://identity.prod.amcon.cloud/oauth2/auth"
     nginx.ingress.kubernetes.io/auth-signin: "https://identity.prod.amcon.cloud/oauth2/start?rd=https://$host$request_uri"
