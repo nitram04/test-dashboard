@@ -17,7 +17,7 @@ metadata:
     k8s-app: grafana
 spec:
   rules:
-  - host: grafana.cluster.intern.amcon.de
+  - host: grafana.cluster.intern.amcon.cloud
     http:
       paths:
       - path: "/"
@@ -29,5 +29,5 @@ spec:
               number: 3000
   tls:
   - hosts:
-    - grafana.cluster.intern.amcon.de
-    secretName: grafana.cluster.intern.amcon.de-tls
+    - grafana.cluster.intern.amcon.cloud
+    secretName: grafana.cluster.intern.amcon.cloud-tls
