@@ -19,7 +19,7 @@ spec:
           service:
             name: grafana
             port:
-              number: 8080
+              number: 3000
   tls:
   - hosts:
     - grafana.cluster.intern.amcon.de
