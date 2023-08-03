@@ -1,33 +1,33 @@
-apiVersion: rbac.authorization.k8s.io/v1
-kind: ClusterRole
+apiVersion: networking.k8s.io/v1
+kind: Ingress
 metadata:
-  name: prometheus
-rules:
-- apiGroups: [""]
-  resources:
-  - nodes
-  - nodes/proxy
-  - services
-  - endpoints
-  - pods
-  verbs: ["get", "list", "watch"]
-- apiGroups:
-  - extensions
-  resources:
-  - ingresses
-  verbs: ["get", "list", "watch"]
-- nonResourceURLs: ["/metrics"]
-  verbs: ["get"]
----
-apiVersion: rbac.authorization.k8s.io/v1
-kind: ClusterRoleBinding
-metadata:
-  name: prometheus
-roleRef:
-  apiGroup: rbac.authorization.k8s.io
-  kind: ClusterRole
-  name: prometheus
-subjects:
-- kind: ServiceAccount
-  name: default
+  name: prometheus-ingress
   namespace: monitoring
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt-nginx
+    kubernetes.io/ingress.class: "nginx"
+    #nginx.ingress.kubernetes.io/auth-url: "https://identity.prod.amcon.cloud/oauth2/auth"
+    #nginx.ingress.kubernetes.io/auth-signin: "https://identity.prod.amcon.cloud/oauth2/start?rd=https://$host$request_uri"
+    #nginx.ingress.kubernetes.io/auth-cache-duration: "200 202 1m"
+    #nginx.ingress.kubernetes.io/auth-cache-key: "$remote_user$http_authorization"
+    #nginx.ingress.kubernetes.io/configuration-snippet: |
+    #  auth_request_set $token $upstream_http_authorization;
+    #  proxy_set_header Authorization $token;
+  labels:
+    k8s-app: prometheus
+spec:
+  rules:
+  - host: prometheus.cluster.intern.amcon.de
+    http:
+      paths:
+      - path: "/"
+        pathType: Prefix
+        backend:
+          service:
+            name: prometheus-service
+            port:
+              number: 3000
+  tls:
+  - hosts:
+    - prometheus.cluster.intern.amcon.de
+    secretName: prometheus.cluster.intern.amcon.de-tls
