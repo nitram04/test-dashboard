@@ -108,4 +108,3 @@ spec:
     - port: 8080
       targetPort: 9090 
       nodePort: 30000
-
